@@ -1,2 +1,1 @@
-# JSCoregithub-api-autocomplete
-4.2.7 JS Core github-api-autocomplete
+https://evgenykankin.github.io/JSCoregithub-api-autocomplete
