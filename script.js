@@ -3,8 +3,11 @@ let autocompliteContainer = document.querySelector(".autocomplite-container");
 let deleteButton = document.querySelector(".delete-repo");
 let repoList = document.querySelector(".repo-list");
 let arr = null;
+let timer;
 
-searchInput.addEventListener('keyup', searchRepo);
+searchInput.addEventListener('keyup', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => searchRepo(), 700)});
 
 document.addEventListener('click', function (e) {
     if (e.target && !e.target.matches('.autocomplite-container') && !e.target.matches('.search-input')) {
@@ -30,15 +33,17 @@ function searchRepo() {
 
 async function getRepo() {
     if (searchInput.value !== ""){
-    let response = await fetch(`https://api.github.com/search/repositories?q=${searchInput.value}`); 
-        if (response.ok) {
-            result = await response.json().then(res => {createAutocomplite(res)});}    
-        else {
-            return console.log("Ошибка запроса к API");
-            }       
-}}
-
-
+        autocompliteContainer.style.display = 'block';
+        let response = await fetch(`https://api.github.com/search/repositories?q=${searchInput.value}`); 
+            if (response.ok) {
+                result = await response.json().then(res => {createAutocomplite(res)});}    
+            else {
+                return console.log("Ошибка запроса к API");}
+                }       
+    else {
+        autocompliteContainer.style.display = 'none';
+    }
+}
 
 function createAutocomplite(res) {
     autocompliteContainer.replaceChildren();
