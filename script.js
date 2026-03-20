@@ -14,7 +14,7 @@ document.addEventListener('click', function (e) {
         autocompliteContainer.style.display = 'none';}
 })
 
-searchInput.addEventListener('focus', function () {autocompliteContainer.style.display = 'block';});
+//searchInput.addEventListener('focus', function () {autocompliteContainer.style.display = 'block';});
 
 autocompliteContainer.addEventListener('click', function(e) {
     if (e.target && e.target.matches('.autocomplite-items')) {
